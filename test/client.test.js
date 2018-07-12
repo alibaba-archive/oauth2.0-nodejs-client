@@ -152,7 +152,6 @@ describe('oauth.js', function () {
         await api.getUserInfo('token');
       } catch (err) {
         expect(err).to.be.ok();
-        console.log(err.stack);
         expect(err.name).to.be.equal('OAuthServerError');
         expect(err.message).to.be.equal('access_denied: parse token failed');
         return;
