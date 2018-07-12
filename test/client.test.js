@@ -36,7 +36,6 @@ describe('oauth.js', function () {
         await api.getAccessToken('code');
       } catch (err) {
         expect(err).to.be.ok();
-        console.log(err.stack);
         expect(err.name).to.be.equal('OAuthServerError');
         expect(err.message).to.be.equal('invalid_grant: code is invalid');
         return;
@@ -87,7 +86,6 @@ describe('oauth.js', function () {
       try {
         await api.refreshAccessToken('refresh_token');
       } catch (err) {
-        console.log(err.stack);
         expect(err).to.be.ok();
         expect(err.name).to.be.equal('OAuthServerError');
         expect(err.message).to.be.equal('invalid_grant: invalid refreshToken');
@@ -140,6 +138,62 @@ describe('oauth.js', function () {
       const result = await api.revokeAccessToken('token');
       expect(result.success).to.be.ok();
       expect(result.message).to.be('success');
+    });
+  });
+
+  describe('getUserInfo', function () {
+    var api = new OAuth({
+      clientId,
+      clientSecret
+    });
+
+    it('should ok', async function () {
+      try {
+        await api.getUserInfo('token');
+      } catch (err) {
+        expect(err).to.be.ok();
+        expect(err.name).to.be.equal('OAuthServerError');
+        expect(err.message).to.be.equal('access_denied: parse token failed');
+        return;
+      }
+      // should never be executed
+      expect(false).to.be.ok();
+    });
+
+    describe('should ok', function () {
+      before(function () {
+        muk(httpx, 'request', async function (url, opts) {
+          return {
+            headers: {
+              'content-type': 'application/json'
+            }
+          };
+        });
+
+        muk(httpx, 'read', async function (response, encoding) {
+          return JSON.stringify({
+            "exp": 1517539523,
+            "sub": "25993xxxxxxxx335187",
+            "name": "alice",
+            "upn": "alice@demo.onaliyun.com",
+            "aud": "45678xxxxxxxx901234",
+            "iss": "https:\/\/oauth.aliyun.com",
+            "did": "",
+            "aid": "1937xxxxxxxxx9368",
+            "bid": "26842",
+            "iat": 1517535923
+          });
+        });
+      });
+
+      after(function () {
+        muk.restore();
+      });
+
+      it('should ok', async function () {
+        var result = await api.getUserInfo('token');
+        expect(result).to.have.keys("name", "upn", "aud", "iss", "did", "aid", "bid", "iat");
+      });
     });
   });
 });
