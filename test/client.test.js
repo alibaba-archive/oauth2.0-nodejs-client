@@ -177,7 +177,7 @@ describe('oauth.js', function () {
             'name': 'alice',
             'upn': 'alice@demo.onaliyun.com',
             'aud': '45678xxxxxxxx901234',
-            'iss': 'https:\/\/oauth.aliyun.com',
+            'iss': 'https://oauth.aliyun.com',
             'did': '',
             'aid': '1937xxxxxxxxx9368',
             'bid': '26842',
