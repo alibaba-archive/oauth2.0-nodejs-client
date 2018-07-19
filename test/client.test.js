@@ -56,11 +56,11 @@ describe('oauth.js', function () {
 
         muk(httpx, 'read', async function (response, encoding) {
           return JSON.stringify({
-            "access_token": "eyJraWQiOiJrMTIzNCIsImVuY...",
-            "token_type": "Bearer",
-            "expires_in": 3600,
-            "refresh_token": "Ccx63VVeTn2dxV7ovXXfLtAqLLERAH1Bc",
-            "id_token": "eyJhbGciOiJIUzI1N..."
+            'access_token': 'eyJraWQiOiJrMTIzNCIsImVuY...',
+            'token_type': 'Bearer',
+            'expires_in': 3600,
+            'refresh_token': 'Ccx63VVeTn2dxV7ovXXfLtAqLLERAH1Bc',
+            'id_token': 'eyJhbGciOiJIUzI1N...'
           });
         });
       });
@@ -108,11 +108,11 @@ describe('oauth.js', function () {
 
         muk(httpx, 'read', async function (response, encoding) {
           return JSON.stringify({
-            "access_token": "eyJraWQiOiJrMTIzNCIsImVuY...",
-            "token_type": "Bearer",
-            "expires_in": 3600,
-            "refresh_token": "Ccx63VVeTn2dxV7ovXXfLtAqLLERAH1Bc",
-            "id_token": "eyJhbGciOiJIUzI1N..."
+            'access_token': 'eyJraWQiOiJrMTIzNCIsImVuY...',
+            'token_type': 'Bearer',
+            'expires_in': 3600,
+            'refresh_token': 'Ccx63VVeTn2dxV7ovXXfLtAqLLERAH1Bc',
+            'id_token': 'eyJhbGciOiJIUzI1N...'
           });
         });
       });
@@ -172,16 +172,16 @@ describe('oauth.js', function () {
 
         muk(httpx, 'read', async function (response, encoding) {
           return JSON.stringify({
-            "exp": 1517539523,
-            "sub": "25993xxxxxxxx335187",
-            "name": "alice",
-            "upn": "alice@demo.onaliyun.com",
-            "aud": "45678xxxxxxxx901234",
-            "iss": "https:\/\/oauth.aliyun.com",
-            "did": "",
-            "aid": "1937xxxxxxxxx9368",
-            "bid": "26842",
-            "iat": 1517535923
+            'exp': 1517539523,
+            'sub': '25993xxxxxxxx335187',
+            'name': 'alice',
+            'upn': 'alice@demo.onaliyun.com',
+            'aud': '45678xxxxxxxx901234',
+            'iss': 'https:\/\/oauth.aliyun.com',
+            'did': '',
+            'aid': '1937xxxxxxxxx9368',
+            'bid': '26842',
+            'iat': 1517535923
           });
         });
       });
@@ -192,7 +192,7 @@ describe('oauth.js', function () {
 
       it('should ok', async function () {
         var result = await api.getUserInfo('token');
-        expect(result).to.have.keys("name", "upn", "aud", "iss", "did", "aid", "bid", "iat");
+        expect(result).to.have.keys('name', 'upn', 'aud', 'iss', 'did', 'aid', 'bid', 'iat');
       });
     });
   });

@@ -15,7 +15,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "lint": "eslint --fix lib/* test/*"
   },
   "files": [
     "lib"
